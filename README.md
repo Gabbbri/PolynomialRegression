@@ -9,9 +9,13 @@
 
 ![Linear Regression Mtrx](jpg/LinearRegrMTRX.png)
 
+
 2. Regressione lineare sfruttando il metodo delle equazioni normali
 
+![Eq normali](jpg/LinearRegrEQNORMALI.png)
+
 3. Regressione polinomiale mediante un polinomio di grado m, sfruttando il metodo delle equazioni normali
+
 
 ## Gnuplot
 
