@@ -1,5 +1,5 @@
 #include <iostream>
-#include "LinearRegression.hpp"
+#include "LinearRegressionVers1.hpp"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ int main () {
 
     //DA FORMATTARE DECENTEMENTE
     for (int i=0; i<numb;i++) {
-        cout << "Inserisci " << i << " punto: ";
+        cout << "Inserisci " << i+1 << " punto: ";
         cin >> (dataset[i]).xp;
         cout << "   " ;
         cin >> (dataset[i]).yp;

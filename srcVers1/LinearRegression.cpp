@@ -5,7 +5,7 @@ Creazione funzione LinearRegression:
     - output: array di double contente i coefficienti della retta
 */
 
-#include "LinearRegression.hpp"
+#include "LinearRegressionVers1.hpp"
 #include <iostream>
 #include <cmath>
 #include <Eigen/Dense>
@@ -64,7 +64,7 @@ double* linear_regression (Data* dataset, int numb) {
    //una gran buona idea in ottica di realizzare una libreria)
    //----> NON C'E` UN MODO PER RITORNARE IL VETTORE DI EIGEN??
 
-   static double sol[2] = {X[1], X[2]};
+   static double sol[2] = {X[0], X[1]};
 
    return sol;
 }
