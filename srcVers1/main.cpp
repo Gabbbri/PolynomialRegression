@@ -27,6 +27,6 @@ int main () {
     cout << "La retta che approssima meglio ai minimi quadrati il tuo dataset è: \n"
          << "y(x) = " << coeff[0] << "x + " << coeff[1];
 
-    
+    delete [] dataset;
     return 0;
 }

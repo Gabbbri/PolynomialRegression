@@ -14,6 +14,7 @@ Si può quindi riciclare il main della vers1.
 
 #include <iostream>
 #include "LinearRegressionVers1.hpp"
+#include <fstream>
 
 using namespace std;
 
@@ -26,12 +27,18 @@ int main () {
     Data* dataset = new Data [numb];
 
     //DA FORMATTARE DECENTEMENTE
+
+    //creazione in contemporanea di un datafile esterno per gnuplot
+
+    string fname = "output.gp";
+    ofstream f1 (fname);   //apertura stream
+    
     for (int i=0; i<numb;i++) {
-        cout << "Inserisci " << i+1 << " punto: ";
+        cout << "Inserisci " << i+1 << " punto: \n";
         cin >> (dataset[i]).xp;
-        cout << "   " ;
         cin >> (dataset[i]).yp;
         cout << "\n";
+        f1 << (dataset[i]).xp << "     " << (dataset[i]).yp;
     }
 
     double* coeff = linear_regression (dataset, numb);
@@ -39,9 +46,7 @@ int main () {
     cout << "La retta che approssima meglio il dataset inserito ai minimi quadrati è:\n"
          << "y(x) = " << coeff[0] << "x + " << coeff[1];
 
-
     delete [] dataset;
-    delete coeff;
 
     return 0;
 }
