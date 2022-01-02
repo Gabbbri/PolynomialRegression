@@ -41,6 +41,8 @@ int main () {
         f1 << (dataset[i]).xp << "     " << (dataset[i]).yp;
     }
 
+    cout << "Chiamata a funzione\n";
+    
     double* coeff = linear_regression (dataset, numb);
 
     cout << "La retta che approssima meglio il dataset inserito ai minimi quadrati è:\n"
