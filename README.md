@@ -1,4 +1,4 @@
-# Regressione lineare tramite il metodo dei minimi quadrati
+# Regressione polinomiale tramite il metodo dei minimi quadrati
 
 > CONSEGNA: 
 >1. Scrivere un programma che data una tabella di punti x,y costruisce il polinomio di grado m ai mininimi quadrati
