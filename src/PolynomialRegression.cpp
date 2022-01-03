@@ -1,12 +1,12 @@
 #include <iostream>
 #include <cmath>
 #include <Eigen/Dense>
-#include "LinearRegressionVers1.hpp"
+#include "PolynomialRegression.hpp"
 
 
 using namespace Eigen;
 
-double* linear_regression (Data* dataset, int numb) {
+double* polynomial_regression (Data* dataset, int numb) {
 
 
     //chiedo all'utente il grado del polinomio con il quale vuole approssimare i punti

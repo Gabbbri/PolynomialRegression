@@ -1,65 +1,82 @@
-#*********************************
-#Makefile solo sulla prima versione
-#Vedi "Dependency Tree V1
-#*********************************
+
 
 CC = g++
 CPPFLAGS = -std=c++11
 ODIR = ./obj
 SDIR = ./src
+LDIR = ./lib   
+TDIR = ./test
 BIN = ./bin
 
 DEFAULT: build
 
 
 #Listo tutti i file oggetto 
-OBJ_FILES = $(ODIR)/main.o $(ODIR)/LinearRegressionV1.o
+OBJ_FILES = $(ODIR)/mainLR1.o $(ODIR)/mainLR2.o $(ODIR)/mainPR.o $(ODIR)/LinearRegressionV1.o $(ODIR)/LinearRegressionV2.o $(ODIR)/PolynomialRegression.o
 
 #I file oggetto hanno bisogno della directory $(ODIR)
 $(OBJ_FILES): | $(ODIR)
 
 #Lista di tutti gli eseguibili da compilare
-LIST = LinearRegressionV1 LinearRegressionV2 LinearRegressionV3
+LIST1 = TestLR1 TestLR2 TestPR  #andranno in ./bin
+LIST2 = LinearRegressionV1 LinearRegressionV2 PolynomialRegression   #andranno in ./lib
 
-#L'eseguibile ha bisogno della directory $(BIN)
-$(LIST): | $(BIN)
+#Gli eseguibili hanno bisogno delle directory $(BIN) e $(LDIR)
+$(LIST1): | $(BIN)
+$(LIST2): | $(LDIR)
 
 #Creo le directory
 
-$(ODIR) $(BIN):
+$(ODIR) $(BIN) $(LDIR):
 	@mkdir $@
 
-#Ho 3 target: LinearRegressionV1.exe, main.o, LinearRegressionV1.o
-
-all: $(LIST)
 
 
+all: $(LIST1) $(LIST2)
 
-$(ODIR)/main.o: $(SDIR)/V1/main.cpp
+
+$(ODIR)/mainLR1.o: $(TDIR)/mainLR1.cpp
 	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@
 
-$(ODIR)/LinearRegressionV1.o: $(SDIR)/V1/LinearRegressionV1.cpp
+$(ODIR)/LinearRegressionV1.o: $(SDIR)/LinearRegressionV1.cpp
 	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@
 
-$(ODIR)/LinearRegressionV2.o: $(SDIR)/V2/LinearRegressionV2.cpp
+
+$(ODIR)/LinearRegressionV2.o: $(SDIR)/LinearRegressionV2.cpp
 	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@
 
-$(ODIR)/main2.o: $(SDIR)/V2/main2.cpp
+$(ODIR)/mainLR2.o: $(TDIR)/mainLR2.cpp
 	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@
 
-$(ODIR)/LinearRegressionV3.o: $(SDIR)/V3/LinearRegressionV3.cpp
+#forse non è necessario includere qui. Basta farlo nel main
+$(ODIR)/PolynomialRegression.o: $(SDIR)/PolynomialRegression.cpp
+	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@    
+
+$(ODIR)/mainPR.o: $(TDIR)/mainPR.cpp
 	$(CC) $(CPPFLAGS) -c $< -I ./include -o $@
 
-LinearRegressionV1: $(ODIR)/main.o $(ODIR)/LinearRegressionV1.o
+TestLR1: $(ODIR)/mainLR1.o $(ODIR)/LinearRegressionV1.o
 	$(CC) $(CPPFLAGS) -o $(BIN)/$@ $^ 
 	@echo compiled $(BIN)/$@
 
-LinearRegressionV2: $(ODIR)/main2.o $(ODIR)/LinearRegressionV2.o
+TestLR2: $(ODIR)/mainLR2.o $(ODIR)/LinearRegressionV2.o
 	$(CC) $(CPPFLAGS) -o $(BIN)/$@ $^ 
 	@echo compiled $(BIN)/$@
 
-LinearRegressionV3: $(ODIR)/main2.o $(ODIR)/LinearRegressionV3.o
+TestPR: $(ODIR)/mainPR.o $(ODIR)/PolynomialRegression.o
 	$(CC) $(CPPFLAGS) -o $(BIN)/$@ $^
+	@echo compiled $(BIN)/$@
+
+#LinearRegressionV1: $(ODIR)/LinearRegressionV1.o
+#	$(CC) $(CPPFLAGS) -o $(LDIR)/$@ $^
+#	@echo compiled $(LDIR)/$@
+
+#LinearRegressionV2: $(SDIR)/LinearRegressionV1.cpp
+#	$(CC) $(CPPFLAGS) $< -I ./include -o $(LDIR)/$@ $^  ------> Come creo gli .exe della libreria se non contengono un main?
+#	@echo compiled $(LDIR)/$@
+
+#PolynomialRegression: $(ODIR)/PolynomialRegression.o
+#	$(CC) $(CPPFLAGS) -o $(LDIR)/$@ $^
 
 build: all
 

@@ -6,7 +6,7 @@
 
 using namespace Eigen;
 
-double* linear_regression (Data* dataset, int numb) {
+double* linear_regression2 (Data* dataset, int numb) {
     
     std::cout << "Entrata";
     //costruisco il sistema in forma matriciale

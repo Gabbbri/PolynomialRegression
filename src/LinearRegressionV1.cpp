@@ -13,7 +13,7 @@ Creazione funzione LinearRegression:
 using namespace std;
 using namespace Eigen;
 
-double* linear_regression (Data* dataset, int numb) {
+double* linear_regression1 (Data* dataset, int numb) {
 
     // sommatoria xi^2
     double sum2xp=0;
