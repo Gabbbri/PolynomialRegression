@@ -6,6 +6,6 @@ struct Data {
     double yp;
 };
 
-double* linear_regression1 (Data*, int);
+double* polynomial_regression (Data*, int);
 
 #endif

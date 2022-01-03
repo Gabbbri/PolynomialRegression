@@ -29,7 +29,7 @@ int main () {
 
     //mi prendo i 2 coefficienti restituiti dalla funzione
 
-    double* coeff = linear_regression (dataset, numb);
+    double* coeff = linear_regression1 (dataset, numb);
     
     cout << "La retta che approssima meglio ai minimi quadrati il tuo dataset è: \n"
          << "y(x) = " << coeff[0] << "x + " << coeff[1];
