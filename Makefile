@@ -67,16 +67,7 @@ TestPR: $(ODIR)/mainPR.o $(ODIR)/PolynomialRegression.o
 	$(CC) $(CPPFLAGS) -o $(BIN)/$@ $^
 	@echo compiled $(BIN)/$@
 
-#LinearRegressionV1: $(ODIR)/LinearRegressionV1.o
-#	$(CC) $(CPPFLAGS) -o $(LDIR)/$@ $^
-#	@echo compiled $(LDIR)/$@
 
-#LinearRegressionV2: $(SDIR)/LinearRegressionV1.cpp
-#	$(CC) $(CPPFLAGS) $< -I ./include -o $(LDIR)/$@ $^  ------> Come creo gli .exe della libreria se non contengono un main?
-#	@echo compiled $(LDIR)/$@
-
-#PolynomialRegression: $(ODIR)/PolynomialRegression.o
-#	$(CC) $(CPPFLAGS) -o $(LDIR)/$@ $^
 
 build: all
 

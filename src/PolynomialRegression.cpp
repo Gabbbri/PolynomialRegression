@@ -17,13 +17,16 @@ double* polynomial_regression (Data* dataset, int numb) {
 
     const int col = degree+1;
 
-    //controllo utente necessario ----> if (degree+1<numb) ---> OK
-    //                                  else {sto interpolando o sto sotto-determinando il sistema} 
-    //DA FARE MEGLIO
-    if (degree+1>=numb) {
+    //controllo utente necessario 
+    //(da migliorare)
+    if (degree+1>numb) {
         std::cout << "Non posso approssimare ai minimi quadrati il tuo dataset con questo polinomio\n";
         exit (1);
     } 
+    else if (degree+1==numb) {
+        std::cout << "Mi stai chiedendo di interpolare, non di approssimare ai minimi quadrati\n";
+        exit (1);
+    }
 
     //COSTRUZIONE DELLA MATRICE A:
     
@@ -88,9 +91,12 @@ double* polynomial_regression (Data* dataset, int numb) {
     x=decomp.solve(new_Y);
 
     //RESTITUISCO AL MAIN UN ARRAY CONTENTENTE I COEFFICIENTI DEL POLINOMIO
+
+    //Nota che si poteva benissimo restiruire il `Eigen::Vector` delle soluzioni, senza copiare tutto in un nuovo array di interi. Si vuole però che IL MAIN SIA INDIPENDENTE DA EIGEN!
     
     //uso static per non deallocare la memoria riservata alla variabile quando la funzione restituisce il controllo al main
-    static double* sol = new double [col];
+    
+    static double* sol = new double [col];  //dove dealloco questo?? Teoricamente nel main, ma lì `sol` non è definito (cosa strana visto che è stato creato come "static" (da investigare))
 
     for (int i=0; i<col; i++) {
         sol[i] = x(i);
